@@ -1,0 +1,13 @@
+<% if @responses.present?%>
+<div class="container">
+    <% @responses.businesses.each do |place|%>
+    <div label="<%=place.name%>">
+        <%= image_tag place.image_url%>
+        <p style="display:inline-block"> <%= place.name %> <br> <%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> <br> <%= place.phone %> <%= ((place.rating-1)*(99/4)+1).to_i%>%</p>
+    </div>
+    <hr>
+<% end %>
+</div>
+    <% else %>
+        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
