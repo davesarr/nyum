@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :httparty
+  helper_method :zomato
 
 private
 
-  def httparty
+  def zomato( restaurant_name )
     @options = {
-        query: { 'res_id' => '16774318' },
+        query: { 'res_id' => restaurant_name },
         headers: { 'user-key' => ENV["ZOMATO_API_KEY"] }
     }
     response = HTTParty.get("https://developers.zomato.com/api/v2.1/restaurant",
