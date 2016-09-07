@@ -1,9 +1,6 @@
 class HomeController < ApplicationController
     def index
 
-<<<<<<< HEAD
-=======
-  def index
   end
 
     def show
@@ -17,7 +14,7 @@ class HomeController < ApplicationController
         if location.present?
             @responses = Yelp.client.search(location, params)
         end
->>>>>>> 981dfd5d075014506790683466a8a85c3aa7ed18
+
     end
 
 
