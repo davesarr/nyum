@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
     def index
+      api_data = Zomato::restaurant_by_id(11534235)
+      puts api_data
 
     end
 
