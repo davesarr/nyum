@@ -1,6 +1,17 @@
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
 <%= form_tag(home_path, :method => "get") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search location" %>
+<%= text_field_tag :search, params[:search], placeholder: "Search location"%>
 <%= text_field_tag :term, params[:term], placeholder: "Search by category" %>
 <%= number_field_tag :sort, params[:sort], placeholder: "Sort data by?" %>
 <%= submit_tag "Search" %>
+<% end %>
+
+<%= form_tag(home_path, :method => "get") do %>
+<%= button_tag( :class => "button_green") do %>
+<i class="fa fa-location-arrow" style="font-size:24px"></i>
+<%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
+<%= hidden_field_tag :term, params[:term]="food" %>
+<% end %>
 <% end %>
