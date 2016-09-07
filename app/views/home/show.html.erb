@@ -1,7 +1,12 @@
 <% if @responses.present?%>
-    <% @responses.businesses.each do |place|%>
-        <%= place.name %> <br>
-    <% end %>
+<table>
+    <th>Restaurant Name</th>
+    <tbody>
+        <% @responses.businesses.each do |place|%>
+        <tr><%= place.name %> <%= place.rating %></tr> <br> <br>
+        <% end %>
+    </tbody>
+</table>
     <% else %>
         <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>
