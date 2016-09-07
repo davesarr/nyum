@@ -13,4 +13,17 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def upvote
+    puts params
+  @restaurant = Restaurant.find(params[:id].to_i)
+  @restaurant.upvote_by current_user
+  redirect_to :back
+end
+
+def downvote
+  @restaurant = Restaurant.find(params[:id].to_i)
+  @restaurant.downvote_by current_user
+  redirect_to :back
+end
+
 end

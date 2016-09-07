@@ -1,12 +1,26 @@
 <% if @responses.present?%>
-<table>
-    <th>Restaurant Name</th>
-    <tbody>
-        <% @responses.businesses.each do |place|%>
-        <tr><%= place.name %> <%= place.rating %></tr> <br> <br>
+<div class="container">
+    <% @responses.businesses.each do |place|%>
+    <div label="<%=place.name%>">
+        <%= image_tag place.image_url%>
+        <p style="display:inline-block"> <%= place.name %> <br>
+        <%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> <br>
+        <%= place.phone %>
+        <%= ((place.rating-1)*(99/4)+1).to_i%>%</p>
+        <% new_restaurant=Restaurant.create(name: place.name)%>
+        <%= link_to like_restaurant_path(new_restaurant.id), method: :put do %>
+        Like
+        <%= new_restaurant.get_upvotes.size %>
         <% end %>
-    </tbody>
-</table>
+        <%= link_to dislike_restaurant_path(new_restaurant.id), method: :put do %>
+        Dislike
+        <%= new_restaurant.get_downvotes.size %>
+        <% end %>
+
+    </div>
+    <hr>
+<% end %>
+</div>
     <% else %>
-        <p>There are no results containing the term(s) <%= params[:search] %>.</p>
+        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>
