@@ -1,0 +1,7 @@
+<% if @responses.present?%>
+    <% @responses.businesses.each do |place|%>
+        <%= place.name %> <br>
+    <% end %>
+    <% else %>
+        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>

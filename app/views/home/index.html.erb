@@ -1,0 +1,5 @@
+<%= form_tag(home_path, :method => "get") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search location" %>
+<%= number_field_tag :limit, params[:limit], placeholder: "Limit search to?" %>
+<%= submit_tag "Search" %>
+<% end %>
