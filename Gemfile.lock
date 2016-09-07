@@ -180,6 +180,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.1)
     http_parser.rb (0.6.0)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -427,6 +429,7 @@ DEPENDENCIES
   guard-rspec (~> 4.6.4)
   haml-rails
   happy_seed
+  httparty
   jbuilder (~> 2.5)
   jquery-rails
   launchy

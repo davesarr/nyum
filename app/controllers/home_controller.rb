@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
-    def index
 
-    end
+  def index
+    httparty
+  end
 
     def show
         location = params[:search]
