@@ -1,6 +1,6 @@
 <%= form_tag(home_path, :method => "get") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search location" %>
-<%= text_field_tag :term, params[:term], placeholder: "Search by category" %>
+<%= text_field_tag :term, params[:term], placeholder: "Search by cuisine" %>
 <%= number_field_tag :sort, params[:sort], placeholder: "Sort data by?" %>
 <%= submit_tag "Search" %>
 <% end %>

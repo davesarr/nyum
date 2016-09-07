@@ -1,12 +1,36 @@
 <% if @responses.present?%>
-<table>
-    <th>Restaurant Name</th>
-    <tbody>
-        <% @responses.businesses.each do |place|%>
-        <tr><%= place.name %> <%= place.rating %></tr> <br> <br>
-        <% end %>
-    </tbody>
-</table>
+<div class="container">
+    <% @responses.businesses.each do |place|%>
+    <div label="<%=place.name%>">
+        <p style="display:inline-block"><%= image_tag place.image_url%></p>
+        <p style="display:inline-block"><%= place.name %> <br> <%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> <br> <%= place.phone %></p>
+        <p><%= ((place.rating-1)*(99/4)+1).to_i%>%</p>
+    </div>
+    <% end %>
+</div>
     <% else %>
         <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>
+
+
+<!-- <% if @responses.present?%>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Rating</th>
+        <th>Phone Number</th>
+    </tr>
+        <% @responses.businesses.each do |place|%>
+    <tr>
+        <td><%= place.name %> </td>
+        <td><%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> </td>
+        <td><%= ((place.rating-1)*(99/4)+1).to_i%>% </td>
+        <td><%= place.phone %> </td>
+
+    </tr>
+        <% end %>
+</table>
+    <% else %>
+        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %> -->
