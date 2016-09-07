@@ -12,5 +12,8 @@ class RestaurantsController < ApplicationController
         @responses = Yelp.client.search(location, params)
     end
   end
+  def show
+    #zomato(restaurant_name)
+  end
 
 end

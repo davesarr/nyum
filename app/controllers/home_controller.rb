@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 
   def index
-    httparty
   end
 
     def show
