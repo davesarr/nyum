@@ -13,4 +13,7 @@
 <%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
 <%= hidden_field_tag :term, params[:term]="food" %>
 <% end %>
+
+<%= @current_user %>
+
 <% end %>
