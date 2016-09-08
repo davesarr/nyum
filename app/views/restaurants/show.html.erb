@@ -11,5 +11,8 @@
             <%= @restaurant.get_downvotes.size%>
           <% end %>
     </div>
-    <hr>
+      <%for i in 0..@menu.length-1%>
+      <p><%=@menu[i].text%><p>
+        <%end%>
+      <hr>
 </div>

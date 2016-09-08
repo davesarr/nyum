@@ -1,5 +1,7 @@
+require 'open-uri'
 class RestaurantsController < ApplicationController
   def index
+
 
     location = params[:search]
     term = params[:term]
@@ -21,10 +23,11 @@ class RestaurantsController < ApplicationController
 
   def show
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
+    @doc = Nokogiri::HTML(open("https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/menu#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1"))
+    @menu=@doc.css('div.tmi-name')
   end
 
   def upvote
-    byebug
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
     @restaurant.upvote_by current_user
     redirect_to :back
