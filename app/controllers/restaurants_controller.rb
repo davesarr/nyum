@@ -14,25 +14,24 @@ class RestaurantsController < ApplicationController
         @responses.businesses.each do |response|
           if Restaurant.find_by_yelp_id(response.id)==nil
             then Restaurant.create(yelp_id: response.id, name: response.name)
+          end
         end
       end
     end
-  end
 
 
   def upvote
-  @restaurant = Restaurant.find_by_yelp_id(params[:id])
-  @restaurant.upvote_by current_user
+    @restaurant = Restaurant.find_by_yelp_id(params[:id])
+    @restaurant.upvote_by current_user
+    redirect_to :back
+  end
 
-  redirect_to :back
-end
+  def downvote
+    @restaurant = Restaurant.find_by_yelp_id(params[:id])
+    @restaurant.downvote_by current_user
 
-def downvote
-  @restaurant = Restaurant.find_by_yelp_id(params[:id])
-  @restaurant.downvote_by current_user
-
-  redirect_to :back
-end
+    redirect_to :back
+  end
 
   def show
     #zomato(restaurant_name)
