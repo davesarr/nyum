@@ -1,6 +1,7 @@
 <% if @responses.present?%>
 <div class="container">
     <% @responses.businesses.each do |place|%>
+    <% @restaurant = Restaurant.find_by_yelp_id(place.id) %>
     <div label="<%=place.name%>">
         <%= image_tag place.image_url%>
         <p style="display:inline-block"> <%= link_to place.id, restaurant_path(place.id) %> <br>
@@ -9,16 +10,16 @@
         <%= ((place.rating-1)*(99/4)+1).to_i%></p>
 
         <%= link_to like_restaurant_path(place.id), method: :put do %>
-        Upvote
-        <%= @likes || 0%>
+          Upvote
+          <%= @restaurant.get_upvotes.size %>
         <% end %>
         <%= link_to dislike_restaurant_path(place.id), method: :put do %>
-        Downvote
-        <%=  @dislikes || 0%>
+          Downvote
+          <%= @restaurant.get_downvotes.size%>
         <% end %>
 
     </div>
-    <hr>
+    <hr />
 <% end %>
 </div>
     <% else %>
