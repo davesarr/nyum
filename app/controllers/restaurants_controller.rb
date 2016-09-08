@@ -1,8 +1,7 @@
 require 'open-uri'
 class RestaurantsController < ApplicationController
+
   def index
-
-
     location = params[:search]
     term = params[:term]
     sort = params[:sort].to_i
@@ -20,11 +19,11 @@ class RestaurantsController < ApplicationController
       end
     end
 
-
   def show
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
-    @doc = Nokogiri::HTML(open("https://www.zomato.com/new-york-city/otto-enoteca-pizzeria-greenwich-village/menu#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1"))
-    @menu=@doc.css('div.tmi-name')
+    menu_url = fetch_menu_url_from_zomato( @current_restaurant )
+    doc = Nokogiri::HTML( open( menu_url ) )
+    @menu = doc.css( 'div.tmi-name' )
   end
 
   def upvote
@@ -40,6 +39,33 @@ class RestaurantsController < ApplicationController
     redirect_to :back
   end
 
+
+  def fetch_menu_url_from_zomato( db_restaurant_name )
+    fuzzy_string_match = FuzzyStringMatch::JaroWinkler.create( :native )
+    best_match = 0
+    menu_url = ''
+    options = {
+        query: { "q" => db_restaurant_name },
+        headers: { "user-key" => ENV["ZOMATO_API_KEY"] }}
+
+    response = HTTParty.get(
+      "https://developers.zomato.com/api/v2.1/search",
+      options )
+
+    zomato_restaurants = JSON.parse(response.body)['restaurants']
+
+    zomato_restaurants.each do | restaurant |
+      restaurant_name = restaurant['restaurant']['name']
+      match_ratio = fuzzy_string_match.getDistance(
+        "db_restaurant_name",
+        "zomato_restaurant_name" )
+      if match_ratio > best_match
+        best_match = match_ratio
+        menu_url = restaurant['restaurant']['menu_url']
+      end
+    end
+    return menu_url
+  end
 
 
 
