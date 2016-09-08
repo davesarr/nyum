@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations',  }
   root 'home#index'
   get '/restaurants' => 'restaurants#index'
-
   resources :restaurants do
     member do
       put "like", to: "restaurants#upvote"
