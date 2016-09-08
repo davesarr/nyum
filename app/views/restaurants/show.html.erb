@@ -11,8 +11,10 @@
             <%= @restaurant.get_downvotes.size%>
           <% end %>
     </div>
+      <%if @menu.present?%>
       <%for i in 0..@menu.length-1%>
       <p><%=@menu[i].text%><p>
+        <%end%>
         <%end%>
       <hr>
 </div>
