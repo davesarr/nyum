@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations',  }
   root 'home#index'
   get '/restaurants' => 'restaurants#index'
-  get '/identities/:id' => 'identities#index'
+  get '/identities/:id/edit' => 'identities#edit'
 
   resources :users, :identities
   resources :restaurants do

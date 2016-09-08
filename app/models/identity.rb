@@ -2,6 +2,7 @@ class Identity < ActiveRecord::Base
   belongs_to :user, required: false
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, scope: :provider
+  validates :phone, length: {minimum: 10}
 
   def self.find_for_oauth(auth)
     identity = find_by(provider: auth.provider, uid: auth.uid)
