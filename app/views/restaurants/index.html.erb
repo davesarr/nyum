@@ -6,15 +6,15 @@
         <p style="display:inline-block"> <%= place.name %> <br>
         <%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> <br>
         <%= place.phone %>
-        <%= ((place.rating-1)*(99/4)+1).to_i%>%</p>
-        <% new_restaurant=Restaurant.create(name: place.name)%>
-        <%= link_to like_restaurant_path(new_restaurant.id), method: :put do %>
-        Like
-        <%= new_restaurant.get_upvotes.size %>
+        <%= ((place.rating-1)*(99/4)+1).to_i%></p>
+
+        <%= link_to like_restaurant_path(place.id), method: :put do %>
+        Upvote
+        <%= @likes || 0%>
         <% end %>
-        <%= link_to dislike_restaurant_path(new_restaurant.id), method: :put do %>
-        Dislike
-        <%= new_restaurant.get_downvotes.size %>
+        <%= link_to dislike_restaurant_path(place.id), method: :put do %>
+        Downvote
+        <%=  @dislikes || 0%>
         <% end %>
 
     </div>

@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
+    @restaurant
 
     location = params[:search]
     term = params[:term]
@@ -10,23 +11,32 @@ class RestaurantsController < ApplicationController
     }
     if location.present?
         @responses = Yelp.client.search(location, params)
+        @responses.businesses.each do |response|
+          Restaurant.create(yelp_id: response.id, name: response.name)
+        end
     end
-  end
-  def show
-    #zomato(restaurant_name)
+
   end
 
+
   def upvote
-    puts params
-  @restaurant = Restaurant.find(params[:id].to_i)
+  @restaurant = Restaurant.find_by_yelp_id(params[:id])
   @restaurant.upvote_by current_user
+  @likes=@restaurant.get_upvotes.size
   redirect_to :back
 end
 
 def downvote
-  @restaurant = Restaurant.find(params[:id].to_i)
+  @restaurant = Restaurant.find_by_yelp_id(params[:id])
   @restaurant.downvote_by current_user
+  @dislikes=@restaurant.get_downvotes.size
   redirect_to :back
 end
+
+  def show
+    #zomato(restaurant_name)
+  end
+
+
 
 end
