@@ -19,14 +19,10 @@ class RestaurantsController < ApplicationController
       end
     end
 
-<<<<<<< HEAD
+
+  def show
+    @current_restaurant = Restaurant.find_by_yelp_id(params[:id].to_s)
   end
-def show
-  puts @current_restaurant
-  @current_restaurant = Restaurant.find_by_yelp_id(params[:id].to_s)
-end
-=======
->>>>>>> 6ef0a20875a40394cc0be7b34162c3238be46106
 
   def upvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
