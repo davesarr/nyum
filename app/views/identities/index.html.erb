@@ -1,1 +1,8 @@
-hello
+<%= form_tag(restaurants_path, :method => "get") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search location" %>
+<%= text_field_tag :term, params[:term], placeholder: "Search by cuisine" %>
+<%= select_tag(:sort, options_for_select([['Best Match', 0],['Distance',1],['Highest Rating',2]],3)) %>
+<%= submit_tag "Search" %>
+<% end %>
+
+<% end %>
