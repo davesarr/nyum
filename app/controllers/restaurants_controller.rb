@@ -21,9 +21,13 @@ class RestaurantsController < ApplicationController
 
   def show
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
-    menu_url = fetch_menu_url_from_zomato( @current_restaurant )
-    doc = Nokogiri::HTML( open( menu_url ) )
-    @menu = doc.css( 'div.tmi-name' )
+    menu_url = fetch_menu_url_from_zomato( @current_restaurant.name )
+    unless menu_url == 'no match'
+      doc = Nokogiri::HTML( open( menu_url ) )
+      unless doc == nil
+        @menu = doc.css( 'div.tmi-name' )
+      end
+    end
   end
 
   def upvote
@@ -55,16 +59,16 @@ class RestaurantsController < ApplicationController
     zomato_restaurants = JSON.parse(response.body)['restaurants']
 
     zomato_restaurants.each do | restaurant |
-      restaurant_name = restaurant['restaurant']['name']
+      zomato_restaurant_name = restaurant['restaurant']['name']
       match_ratio = fuzzy_string_match.getDistance(
-        "db_restaurant_name",
-        "zomato_restaurant_name" )
+        db_restaurant_name,
+        zomato_restaurant_name )
       if match_ratio > best_match
         best_match = match_ratio
         menu_url = restaurant['restaurant']['menu_url']
       end
     end
-    return menu_url
+    return best_match > 0.666 ? menu_url : 'no match'
   end
 
 
