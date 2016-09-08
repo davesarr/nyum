@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require 'fuzzystringmatch'
   protect_from_forgery with: :exception
 
   before_action :authenticate
@@ -10,20 +11,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-  helper_method :zomato
-
-private
-
-  def zomato( restaurant_name )
-    @options = {
-        query: { 'res_id' => restaurant_name },
-        headers: { 'user-key' => ENV["ZOMATO_API_KEY"] }
-    }
-    response = HTTParty.get("https://developers.zomato.com/api/v2.1/restaurant",
-      @options
-    )
-    JSON.parse(response.body)
-  end
-
 end
