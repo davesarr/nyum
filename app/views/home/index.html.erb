@@ -12,5 +12,16 @@
 <%= select_tag(:sort, options_for_select([['Best Match', 0],['Distance',1],['Highest Rating',2]],3){}, { :class => 'select'}) %>
 <%= submit_tag "Search" %>
 <% end %>
+<<<<<<< HEAD
+=======
+
+<%= form_tag(restaurants_path, :method => "get") do %>
+<%= button_tag( :class => "button_green") do %>
+<i class="fa fa-location-arrow" style="font-size:24px"></i>
+<%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
+<%= hidden_field_tag :term, params[:term]="food" %>
+<% end %>
+
+>>>>>>> feature_user_settings
 <% end %>
 </div>

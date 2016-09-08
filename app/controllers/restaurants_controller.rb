@@ -1,10 +1,9 @@
 require 'open-uri'
 class RestaurantsController < ApplicationController
-
   def index
     location = params[:search]
     term = params[:term]
-    sort = params[:sort].to_i
+    sort = params[:sort]
     params = {limit: 20,
         sort: sort,
         term: term
