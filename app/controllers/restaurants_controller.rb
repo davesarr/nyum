@@ -17,7 +17,10 @@ class RestaurantsController < ApplicationController
     end
 
   end
-
+def show
+  puts @current_restaurant
+  @current_restaurant = Restaurant.find_by_yelp_id(params[:id].to_s)
+end
 
   def upvote
   @restaurant = Restaurant.find_by_yelp_id(params[:id])
@@ -33,9 +36,6 @@ def downvote
   redirect_to :back
 end
 
-  def show
-    #zomato(restaurant_name)
-  end
 
 
 

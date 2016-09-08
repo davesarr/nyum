@@ -3,7 +3,7 @@
     <% @responses.businesses.each do |place|%>
     <div label="<%=place.name%>">
         <%= image_tag place.image_url%>
-        <p style="display:inline-block"> <%= place.name %> <br>
+        <p style="display:inline-block"> <%= link_to place.id, restaurant_path(place.id) %> <br>
         <%= place.location.display_address.to_s.gsub(/[\[\]"]/, '')%> <br>
         <%= place.phone %>
         <%= ((place.rating-1)*(99/4)+1).to_i%></p>
