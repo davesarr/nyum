@@ -10,11 +10,15 @@
 
         <%= link_to like_restaurant_path(place.id), method: :put do %>
         Upvote
-        <%= @likes || 0%>
+        <%if @restaurant.present?%>
+        <%= @restaurant.get_upvotes.size %>
+        <% end %>
         <% end %>
         <%= link_to dislike_restaurant_path(place.id), method: :put do %>
         Downvote
-        <%=  @dislikes || 0%>
+        <%if @restaurant.present?%>
+          <%= @restaurant.get_downvotes.size %>
+        <% end %>
         <% end %>
 
     </div>
