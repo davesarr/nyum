@@ -1,17 +1,14 @@
 <div class="container">
     <div label="<%=@current_restaurant.name%>">
-
         <p style="display:inline-block"> <%= @current_restaurant.name%> <br>
-
         <%= link_to like_restaurant_path(@current_restaurant.id), method: :put do %>
         Upvote
-        <%= @likes || 0%>
+        <%= @current_restaurant.get_upvotes.size %>
         <% end %>
         <%= link_to dislike_restaurant_path(@current_restaurant.id), method: :put do %>
         Downvote
-        <%=  @dislikes || 0%>
+        <%= @current_restaurant.get_downvotes.size %>
         <% end %>
-
     </div>
     <hr>
 </div>
