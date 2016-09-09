@@ -1,20 +1,30 @@
-<div class="container">
-    <div label="<%=@current_restaurant.name%>">
-      <% @restaurant = Restaurant.find_by_yelp_id(@current_restaurant.yelp_id) %>
-        <p style="display:inline-block"> <%= @current_restaurant.name%> <br>
-          <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            Upvote
-            <%= @restaurant.get_upvotes.size %>
-          <% end %>
-          <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            Downvote
-            <%= @restaurant.get_downvotes.size%>
-          <% end %>
-    </div>
-      <%if @menu.present?%>
-      <%for i in 0..@menu.length-1%>
-      <p><%=@menu[i].text%><p>
-        <%end%>
-        <%end%>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+        <div label="<%=@current_restaurant.name%>">
+          <% @restaurant = Restaurant.find_by_yelp_id(@current_restaurant.yelp_id) %>
+            <p style="display:inline-block"> <%= @current_restaurant.name%> <br>
+              <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                Upvote
+                <%= @restaurant.get_upvotes.size %>
+              <% end %>
+              <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                Downvote
+                <%= @restaurant.get_downvotes.size%>
+              <% end %>
+        </div>
+          <%if @menu.present?%>
+          <%for i in 0..@menu.length-1%>
+          <p><%=@menu[i].text%><p>
+            <%end%>
+            <%end%>
+          <hr>
+          <%if @menu_id.present?%>
+          <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
+          <%end%>
       <hr>
 </div>
