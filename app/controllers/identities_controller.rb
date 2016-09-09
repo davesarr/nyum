@@ -1,18 +1,31 @@
 class IdentitiesController < ApplicationController
+  layout 'application', :except => :show
+
+
     def edit
-        @identity = Identity.find_by(params[:id])
+        @identity = Identity.find(params[:id])
+    end
+
+
+    def show
+      unless ActiveRecord::RecordNotFound
+      @identity = Identity.find(params[:id])
+      else
+      @user= User.find(params[:id])
+      end
+      render layout: 'user_profile'
     end
 
     def update
         identity = params['identity']
-        Identity.update(params[:id],
+        Identity.update( id: params[:id],
                 name: identity[:name],
                 nickname: identity[:nickname],
                 phone: identity[:phone]
         )
-
         redirect_to (:back)
     end
+
 
 private
     def updated_params
