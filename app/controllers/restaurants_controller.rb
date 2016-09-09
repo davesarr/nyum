@@ -38,7 +38,7 @@ class RestaurantsController < ApplicationController
       "&locality=new%20york" +
       "&api_key="+ENV["LOCU_API_KEY"]
     )
-    unless response["objects"].empty? && response == nil
+    if !response["objects"].empty? && !response == nil
       @menu_id=response["objects"][0]["id"]
 
     #zomato api
