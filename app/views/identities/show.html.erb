@@ -1,0 +1,9 @@
+<%if @identity.present?%>
+<%=@identity.name%></br>
+<%=@identity.email%></br>
+<%=image_tag src=@identity.image%></br>
+Signed in through <%=@identity.provider%>
+<%end%>
+<%if @user.present?%>
+<%=@user.email%>
+<%end%>
