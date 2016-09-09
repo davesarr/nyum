@@ -19,8 +19,16 @@ class RestaurantsController < ApplicationController
     end
 
   def show
+
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
-    menu_url = fetch_menu_url_from_zomato( @current_restaurant.name )
+    #locu api
+    response = HTTParty.get("https://api.locu.com/v1_0/venue/search/?name="+@current_restaurant.name+"&locality=new%20york"+"&api_key="+ENV["LOCU_API_KEY"])
+    if !response["objects"].empty? && response!=nil
+      @menu_id=response["objects"][0]["id"]
+
+    #zomato api
+    else
+    menu_url = fetch_menu_url_from_api( @current_restaurant.name )
     unless menu_url == 'no match'
       doc = Nokogiri::HTML( open( menu_url ) )
       unless doc == nil
@@ -28,6 +36,7 @@ class RestaurantsController < ApplicationController
       end
     end
   end
+end
 
   def upvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
@@ -43,7 +52,7 @@ class RestaurantsController < ApplicationController
   end
 
 
-  def fetch_menu_url_from_zomato( db_restaurant_name )
+  def fetch_menu_url_from_api( db_restaurant_name )
     fuzzy_string_match = FuzzyStringMatch::JaroWinkler.create( :native )
     best_match = 0
     menu_url = ''
