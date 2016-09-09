@@ -27,8 +27,36 @@
           <%if @menu_id.present?%>
           <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
           <%end%>
+<h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
+<div id="rest_show" class="container">
+    <div class="rest_info_div">
+        <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
+        <p><%= @current_restaurant.address %></p>
+        <p><%= @current_restaurant.phone %></p>
+        <p><%= @current_restaurant.rating%>%</p>
+        <p><%= @current_restaurant.category%></p>
     </div>
-  </body>
-</html>
 
-<script type="text/javascript" id="-locu-widget" src=<%=src%>></script>
+    <% @restaurant = Restaurant.find_by_yelp_id(@current_restaurant.yelp_id) %>
+
+    <div id="rest_menu">
+        <%if @menu.present?%>
+            <%for i in 0..@menu.length-1%>
+                <p><%=@menu[i].text%></p>
+            <%end%>
+        <%end%>
+    </div>
+
+    <div id="rest_likes">
+        <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+        Upvote
+        <%= @restaurant.get_upvotes.size %>
+        <% end %> <br>
+        <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+        Downvote
+        <%= @restaurant.get_downvotes.size%>
+        <% end %>
+    </div>
+</div>
+
+<!-- {"id":190,"category":"Pizza,pizza,Italian,italian,Tapas/SmallPlates,tapasmallplates","rating":"85","name":"B Side Pizza \u0026 Wine Bar","address":"370 W 51st St, Theater District, New York, NY 10019","image_url":"https://s3-media1.fl.yelpcdn.com/bphoto/m_5goJPoabzTHCyQ2qAVGQ/ms.jpg","phone":"6466797225","menu_link":null,"created_at":"2016-09-09T15:04:52.060Z","updated_at":"2016-09-09T15:04:52.060Z","yelp_id":"b-side-pizza-and-wine-bar-new-york"} -->
