@@ -18,6 +18,8 @@ class RestaurantsController < ApplicationController
             address:response.location.display_address.to_s.gsub(/[\[\]"]/, ''),
             phone: response.phone,
             rating: ((response.rating-1)*(99/4)+1).to_i,
+            latitude: response.location.coordinate.latitude,
+            longitude: response.location.coordinate.longitude,
             category: response.categories.to_s.
               gsub(/[ \[\]"]/,'').
               gsub(/\b([a-z])\w+/, ' ').
@@ -43,7 +45,7 @@ class RestaurantsController < ApplicationController
 
     #zomato api
     else
-    menu_url = fetch_menu_url_from_api( @current_restaurant.name )
+    menu_url = fetch_menu_url_from_api( @current_restaurant )
     unless menu_url == 'no match'
       doc = Nokogiri::HTML( open( menu_url ) )
       unless doc == nil
@@ -66,12 +68,16 @@ end
   end
 
 
-  def fetch_menu_url_from_api( db_restaurant_name )
+  def fetch_menu_url_from_api( db_restaurant_obj )
     fuzzy_string_match = FuzzyStringMatch::JaroWinkler.create( :native )
     best_match = 0
     menu_url = ''
     options = {
-        query: { "q" => db_restaurant_name },
+        query: {
+          "q" => db_restaurant_obj.name,
+          "lat" => db_restaurant_obj.latitude,
+          "lon" => db_restaurant_obj.longitude
+        },
         headers: { "user-key" => ENV["ZOMATO_API_KEY"] }}
 
     response = HTTParty.get(
@@ -83,7 +89,7 @@ end
     zomato_restaurants.each do | restaurant |
       zomato_restaurant_name = restaurant['restaurant']['name']
       match_ratio = fuzzy_string_match.getDistance(
-        db_restaurant_name,
+        db_restaurant_obj.name,
         zomato_restaurant_name )
       if match_ratio > best_match
         best_match = match_ratio
