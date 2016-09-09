@@ -26,14 +26,13 @@
         </div>
 
         <div id="rest_likes">
-            <% @restaurant = Restaurant.find_by_yelp_id(@current_restaurant.yelp_id) %>
             <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
             Upvote
-            <%= @restaurant.get_upvotes.size %>
+            <%= @current_restaurant.get_upvotes.size %>
             <% end %> <br>
             <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
             Downvote
-            <%= @restaurant.get_downvotes.size%>
+            <%= @current_restaurant.get_downvotes.size%>
             <% end %>
         </div>
     </div>
