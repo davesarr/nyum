@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'fuzzy-string-match'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'geocoder'
-gem 'acts_as_votable'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -99,3 +96,9 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'httparty'
+gem 'geocoder'
+gem 'acts_as_votable'
+gem 'fuzzy-string-match'
+gem 'redis-rails'
+gem 'redis-namespace'
+gem 'rack-mini-profiler'
