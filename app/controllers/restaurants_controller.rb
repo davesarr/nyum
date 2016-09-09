@@ -11,11 +11,11 @@ class RestaurantsController < ApplicationController
     if location.present?
         @responses = Yelp.client.search(location, params)
         @responses.businesses.each do |response|
-          if Restaurant.find_by_yelp_id(response.id)==nil
-            then Restaurant.create(yelp_id: response.id, name: response.name, image_url: response.image_url, address:response.location.display_address.to_s.gsub(/[\[\]"]/, ''), phone: response.phone, rating: ((response.rating-1)*(99/4)+1).to_i)
-          end
+            if Restaurant.find_by_yelp_id(response.id)==nil
+                then Restaurant.create(yelp_id: response.id, name: response.name, image_url: response.image_url, address:response.location.display_address.to_s.gsub(/[\[\]"]/, ''), phone: response.phone, rating: ((response.rating-1)*(99/4)+1).to_i, category: response.categories.to_s.gsub(/[ \[\]"]/,'').gsub(/\b([a-z])\w+/, ' ').gsub(/,/, ' '))
+                end
+            end
         end
-      end
     end
 
   def show

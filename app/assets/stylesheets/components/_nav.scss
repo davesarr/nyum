@@ -15,3 +15,33 @@ nav{
   float: right;
   margin-top: 2vh;
 }
+#rest_name_header{
+    font-family: $font-family-logo;
+    font-size: 48px;
+    text-align: center;
+}
+
+#rest_show{
+    display: flex;
+    align-content: stretch;
+
+    .rest_info_div{
+        max-width: 280;
+        text-align: center;
+
+        .rest_image{
+            height: 150;
+            width: 150;
+        }
+    }
+
+    #rest_menu{
+        flex-grow: 2;
+        text-align: center;
+    }
+
+    #rest_likes{
+        flex-grow: 1;
+        text-align: center;
+    }
+}
