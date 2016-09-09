@@ -1,5 +1,5 @@
-require 'open-uri'
 class RestaurantsController < ApplicationController
+
   def index
     location = params[:search]
     term = params[:term]
@@ -9,21 +9,36 @@ class RestaurantsController < ApplicationController
         term: term
     }
     if location.present?
-        @responses = Yelp.client.search(location, params)
-        @responses.businesses.each do |response|
-            if Restaurant.find_by_yelp_id(response.id)==nil
-                then Restaurant.create(yelp_id: response.id, name: response.name, image_url: response.image_url, address:response.location.display_address.to_s.gsub(/[\[\]"]/, ''), phone: response.phone, rating: ((response.rating-1)*(99/4)+1).to_i, category: response.categories.to_s.gsub(/[ \[\]"]/,'').gsub(/\b([a-z])\w+/, ' ').gsub(/,/, ' '))
-                end
-            end
+      @responses = Yelp.client.search(location, params)
+      @responses.businesses.each do |response|
+        if Restaurant.find_by_yelp_id(response.id)==nil
+          Restaurant.create(yelp_id: response.id,
+            name: response.name,
+            image_url: response.image_url,
+            address:response.location.display_address.to_s.gsub(/[\[\]"]/, ''),
+            phone: response.phone,
+            rating: ((response.rating-1)*(99/4)+1).to_i,
+            category: response.categories.to_s.
+              gsub(/[ \[\]"]/,'').
+              gsub(/\b([a-z])\w+/, ' ').
+              gsub(/,/, ' ')
+            )
+          end
         end
+      end
     end
 
   def show
 
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
     #locu api
-    response = HTTParty.get("https://api.locu.com/v1_0/venue/search/?name="+@current_restaurant.name+"&locality=new%20york"+"&api_key="+ENV["LOCU_API_KEY"])
-    if !response["objects"].empty? && response!=nil
+    response = HTTParty.get(
+      "https://api.locu.com/v1_0/venue/search/?name=" +
+      @current_restaurant.name +
+      "&locality=new%20york" +
+      "&api_key="+ENV["LOCU_API_KEY"]
+    )
+    unless response["objects"].empty? && response == nil
       @menu_id=response["objects"][0]["id"]
 
     #zomato api
@@ -47,7 +62,6 @@ end
   def downvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
     @restaurant.downvote_by current_user
-
     redirect_to :back
   end
 
