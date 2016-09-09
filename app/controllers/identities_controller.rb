@@ -13,6 +13,11 @@ class IdentitiesController < ApplicationController
       else
       @user= User.find(params[:id])
       end
+      @likes=[]
+      votes= Vote.where(voter_id: params[:id])
+      votes.each do |vote|
+        @likes+=Restaurant.where(id: vote.votable_id)
+      end
       render layout: 'user_profile'
     end
 

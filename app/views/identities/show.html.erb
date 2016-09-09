@@ -1,9 +1,20 @@
 <%if @identity.present?%>
-<%=@identity.name%></br>
-<%=@identity.email%></br>
-<%=image_tag src=@identity.image%></br>
-Signed in through <%=@identity.provider%>
+  Name: <%=@identity.name%></br>
+  Email: <%=@identity.email%></br>
+  <%=image_tag src=@identity.image%></br>
+  Signed in through <%=@identity.provider%>
+  </br>
+  Your restaurants:
+  <%for i in 0..@likes.length-1%>
+      <p><%=@likes[i].name%></p>
+  <%end%>
 <%end%>
+
 <%if @user.present?%>
-<%=@user.email%>
+  <h3>Email: <%=@user.email%></h3>
+  </br>
+  <h3>Your restaurants:</h3>
+  <%for i in 0..@likes.length-1%>
+      <p><%=@likes[i].name%></p>
+  <%end%>
 <%end%>
