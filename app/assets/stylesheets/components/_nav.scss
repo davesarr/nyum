@@ -1,9 +1,22 @@
+
+
 nav{
-  background-color: rgba(232,232,232,0.3);
+  background-color: rgba(232,232,222,0.5);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
   padding: 0 2vw;
+}
+
+body{
+    background-color: #feb8bd;
+}
+
+a{
+    color: #851226;
+}
+div,p{
+font-family: $font-family-sans-serif;
 }
 
 #logo{
@@ -15,11 +28,17 @@ nav{
 #account-btns{
   float: right;
   margin-top: 2vh;
+  font-family: helvetica;
 }
 #rest_name_header{
     font-family: $font-family-logo;
     font-size: 48px;
     text-align: center;
+}
+
+// restaurant show page
+.img_index{
+  border: 2px solid grey;
 }
 
 #rest_show{
@@ -30,6 +49,7 @@ nav{
       margin: 0 auto;
         width: 60vw;
         text-align: center;
+        margin-right: 15px;
 
         .rest_image{
           margin: 0 auto;
@@ -50,6 +70,7 @@ nav{
 }
 
 
+
 #menu-container{
   display: flex;
   margin: 0 auto;
@@ -61,8 +82,19 @@ nav{
   }
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+}
+.rest_index{
+  width: 25vw;
+}
+td{
+  min-width: 20vw;
+}
+
 // index
-#rest_index, #user, #identity {
+#user, #identity {
   margin: 0 auto;
   width:80vw;
 }

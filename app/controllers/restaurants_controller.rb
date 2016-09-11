@@ -61,13 +61,13 @@ class RestaurantsController < ApplicationController
   def upvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
     @restaurant.upvote_by current_user
-    redirect_to :back
+    redirect_to request.referer + '#'+@restaurant.yelp_id
   end
 
   def downvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
     @restaurant.downvote_by current_user
-    redirect_to :back
+    redirect_to request.referer + '#'+@restaurant.yelp_id 
   end
 
 
