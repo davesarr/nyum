@@ -8,11 +8,17 @@ nav{
 .dropdown-toggle{
     height: 34px;
 }
-body{
-    background-color: #feb8bd;
+#home_index {
+  background: url('/assets/background_img.jpeg');
+  background-size: cover;
 }
+
 a{
-    color: #851226;
+  color: #851226;
+}
+
+a:hover{
+  text-decoration: none;
 }
 div,p{
 font-family: $font-family-sans-serif;
@@ -46,7 +52,6 @@ font-family: $font-family-sans-serif;
         width: 60vw;
         text-align: center;
 
-
         .rest_image{
             padding-top: 5px;
             height: 180px;
@@ -62,19 +67,9 @@ font-family: $font-family-sans-serif;
 
      #rest_maps{
        width: 15vw;
+       text-align: center;
     }
 }
-
-// #menu-container{
-//   display: flex;
-//   margin: 0 auto;
-//   text-align: center;
-//   width: 980px;
-//   #rest_menu{
-//       margin: 0 auto;
-//       text-align: center;
-//   }
-// }
 #-locu-widget-widget-instance{
     max-width: 1170px;
     margin: 0 auto;
@@ -83,17 +78,22 @@ td.locu-widget-reset{
     text-align: center;
 }
 
-table {
+#rest_index_table {
     border-collapse: separate;
-    border-spacing: 20px 0px;
+    border-spacing: 20px 10px;
+    width: 70vw;
+    margin: 0 40px;
 }
+
 .rest_index{
-  width: 25vw;
+  width: 20vw;
+  float: left;
 }
 td{
-  min-width: 20vw;
+  min-width: 15vw;
   text-align: center;
 }
+
 
 // index
 #user, #identity {
