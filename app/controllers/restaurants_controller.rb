@@ -37,13 +37,13 @@ class RestaurantsController < ApplicationController
     @longitude= @current_restaurant.longitude
     #locu api
     response = HTTParty.get(
-      "https://api.locu.com/v1_0/venue/search/?name=" +
-      @current_restaurant.name +
-      "&locality=new%20york" +
+      "https://api.locu.com/v1_0/venue/search/?" +
+      "location=" + (@latitude).round(3).to_s + ", " + (@longitude).round(3).to_s +
+      "&name=" + @current_restaurant.name +
       "&api_key="+ENV["LOCU_API_KEY"]
     )
-    if !response["objects"].empty? && !response == nil
-      @menu_id=response["objects"][0]["id"]
+    if response != nil
+      @menu_id=response["objects"][response["objects"].length-1]["id"]
 
     #zomato api
     else
