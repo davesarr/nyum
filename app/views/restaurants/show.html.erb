@@ -7,15 +7,10 @@
     <title></title>
   </head>
   <body>
-    <h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
+    
+<h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
     <div id="rest_show" class="container">
-        <div class="rest_info_div">
-            <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
-            <h4><%= @current_restaurant.address %></h4>
-            <h4><%= @current_restaurant.phone %></h4>
-            <h4><%= @current_restaurant.rating%>%</h4>
-            <h4><%= @current_restaurant.category%></h4>
-        </div>
+
 
         <div id="rest_maps">
             <%latitude=@current_restaurant.latitude%>
@@ -41,8 +36,15 @@
             handler.fitMapToBounds();
             });
           </script>
+          <h4><%= @current_restaurant.address %></h4>
+          <h4><%= @current_restaurant.phone %></h4>
         </div>
 
+        <div class="rest_info_div">
+            <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
+            <h4><%= @current_restaurant.rating%>%</h4>
+            <h4><%= @current_restaurant.category%></h4>
+        </div>
 
         <div id="rest_likes">
             <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
@@ -61,7 +63,7 @@
             <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
           <%elsif @menu.present?%>
           </br>
-          <h2>Menu</h2>
+          <h2 style="text-align:center">Menu</h2>
           </br>
           <table>
             <%for i in 0..@menu.length-1%>

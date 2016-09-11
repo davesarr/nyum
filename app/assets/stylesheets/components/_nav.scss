@@ -3,14 +3,15 @@ nav{
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding: 0 2vw;
 }
+
 #logo{
   font-size: 2.5em;
   float: left;
   margin-top: 0;
 }
+
 #account-btns{
   float: right;
   margin-top: 2vh;
@@ -22,66 +23,46 @@ nav{
 }
 
 #rest_show{
-    display: inline-flex;
-    align-content:stretch;
-    margin: 0 auto;
-
+    width: 980px;
+    display: flex;
 
     .rest_info_div{
       margin: 0 auto;
-        max-width: 280;
+        width: 60vw;
         text-align: center;
-
 
         .rest_image{
           margin: 0 auto;
             height: 150;
             width: 150;
-
+            text-align: center;
         }
     }
 
-    #rest_menu{
-        // width: 20%;
-        // text-align: center;
-        margin: 0 auto;
+    #rest_likes{
+      width: 15vw;
     }
 
-    #rest_likes{
-        // width: 20%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    #rest_map{
-      // width: 20%;
-      margin: 0 auto;
-      // text-align: center;
+     #rest_map {
+       width: 15vw;
+          text-align: center;
     }
 }
+
 
 #menu-container{
   display: flex;
   margin: 0 auto;
-  align-content: stretch;
-  width: 1000px;
+  text-align: center;
+  width: 980px;
   #rest_menu{
       margin: 0 auto;
+      text-align: center;
   }
 }
 
-
-//
 // index
-#rest_index{
-  margin: 0 auto;
-  width:80vw;
-}
-
-#user{
-  margin: 0 auto;
-  width:80vw;
-}
-#identity{
+#rest_index, #user, #identity {
   margin: 0 auto;
   width:80vw;
 }
