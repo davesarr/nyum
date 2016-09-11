@@ -8,11 +8,17 @@ nav{
 .dropdown-toggle{
     height: 34px;
 }
-body{
-    background-color: #feb8bd;
+#home_index {
+  background: url('/assets/background_img.jpeg');
+  background-size: cover;
 }
+
 a{
-    color: #851226;
+  color: #851226;
+}
+
+a:hover{
+  text-decoration: none;
 }
 div,p{
 font-family: $font-family-sans-serif;
@@ -41,13 +47,12 @@ font-family: $font-family-sans-serif;
 }
 
 #rest_show{
-    width: 980px;
     display: flex;
 
     .rest_info_div{
+      float: left;
       margin: 0 auto;
-        width: 60vw;
-        text-align: center;
+        width: 40vw;
         margin-right: 15px;
 
         .rest_image{
@@ -64,10 +69,10 @@ font-family: $font-family-sans-serif;
 
      #rest_map {
        width: 15vw;
-          text-align: center;
+       text-align: center;
     }
-}
 
+}
 
 
 #menu-container{
@@ -81,16 +86,22 @@ font-family: $font-family-sans-serif;
   }
 }
 
-table {
+#rest_index_table {
     border-collapse: separate;
-    border-spacing: 20px 0px;
+    border-spacing: 20px 10px;
+    width: 70vw;
+    margin: 0 40px;
 }
+
 .rest_index{
-  width: 25vw;
+  width: 20vw;
+  float: left;
 }
 td{
-  min-width: 20vw;
+  min-width: 15vw;
+  text-align: center;
 }
+
 
 // index
 #user, #identity {

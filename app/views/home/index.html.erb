@@ -1,16 +1,18 @@
+<body id="home_index">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <div class="search-container">
 <%= form_tag(restaurants_path, :method => "get", :id => 'welcome-search-bar')  do %>
 <%= form_tag(restaurants_path, :method => "get", :id => 'bttn-welcome-search') do %>
 <%= button_tag( :class => "button_green") do %>
-<i class="fa fa-location-arrow"></i>
+<i class="fa fa-location-arrow" style="font-size:20px;"></i>
 <%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
 <%= hidden_field_tag :term, params[:term]="Restaurants" %>
 <% end %>
 <%= text_field_tag :search, params[:search], placeholder: "Search location"%>
 <%= text_field_tag :term, params[:term], placeholder: "Search by cuisine" %>
 <%= select_tag(:sort, options_for_select([['Best Match', 0],['Distance',1],['Highest Rating',2]],3){}, { :class => 'select'}) %>
-<%= submit_tag "Search" %>
+<%= submit_tag "Search", :id=> "submit_button" %>
 <% end %>
 <% end %>
 </div>
+</body>
