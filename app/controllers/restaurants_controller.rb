@@ -42,7 +42,7 @@ class RestaurantsController < ApplicationController
       "&name=" + @current_restaurant.name +
       "&api_key="+ENV["LOCU_API_KEY"]
     )
-    if response != nil
+    if response["objects"].empty? ==false
       @menu_id=response["objects"][response["objects"].length-1]["id"]
 
     #zomato api
