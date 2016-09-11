@@ -1,9 +1,17 @@
 nav{
-  background-color: rgba(232,232,232,0.3);
+  background-color: rgba(232,232,222,0.5);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
   padding: 0 2vw;
+}
+
+body{
+    background-color: #feb8bd;
+}
+
+a{
+    color: #851226;
 }
 
 #logo{
@@ -15,12 +23,15 @@ nav{
 #account-btns{
   float: right;
   margin-top: 2vh;
+  font-family: helvetica;
 }
 #rest_name_header{
     font-family: $font-family-logo;
     font-size: 48px;
     text-align: center;
 }
+
+// restaurant show page
 
 #rest_show{
     width: 980px;

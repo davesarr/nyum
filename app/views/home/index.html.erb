@@ -7,7 +7,7 @@
 <%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
 <%= hidden_field_tag :term, params[:term]="Restaurants" %>
 <% end %>
-<%= text_field_tag :search, params[:search], placeholder: "Search location" %>
+<%= text_field_tag :search, params[:search], placeholder: "Search location"%>
 <%= text_field_tag :term, params[:term], placeholder: "Search by cuisine" %>
 <%= select_tag(:sort, options_for_select([['Best Match', 0],['Distance',1],['Highest Rating',2]],3){}, { :class => 'select'}) %>
 <%= submit_tag "Search" %>
