@@ -11,6 +11,7 @@
   <span id="logo"><%= link_to "Nyum!", root_path%></span>
   <span id="account-btns"><% if user_signed_in? %>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% current_user.email= current_user.email || "My Profile" %>
   <%= link_to current_user.email, identity_path(current_user.id)%>
   <!-- <%= link_to "Edit Profile", edit_identity_path(current_user.id)%> -->
   <% else %>

@@ -1,9 +1,15 @@
+
+
 nav{
   background-color: rgba(232,232,232,0.3);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
   padding: 0 2vw;
+}
+
+div,p{
+font-family: $font-family-sans-serif;
 }
 
 #logo{
@@ -22,6 +28,10 @@ nav{
     text-align: center;
 }
 
+.img_index{
+  border: 2px solid grey;
+}
+
 #rest_show{
     width: 980px;
     display: flex;
@@ -30,6 +40,7 @@ nav{
       margin: 0 auto;
         width: 60vw;
         text-align: center;
+        margin-right: 15px;
 
         .rest_image{
           margin: 0 auto;
@@ -50,6 +61,7 @@ nav{
 }
 
 
+
 #menu-container{
   display: flex;
   margin: 0 auto;
@@ -61,8 +73,19 @@ nav{
   }
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+}
+.rest_index{
+  width: 25vw;
+}
+td{
+  min-width: 20vw;
+}
+
 // index
-#rest_index, #user, #identity {
+#user, #identity {
   margin: 0 auto;
   width:80vw;
 }
