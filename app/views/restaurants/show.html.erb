@@ -7,11 +7,9 @@
     <title></title>
   </head>
   <body>
-    
+
 <h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
-    <div id="rest_show" class="container">
-
-
+    <table id="rest_show" class="container">
         <div id="rest_maps">
             <%latitude=@current_restaurant.latitude%>
             <%longitude=@current_restaurant.longitude%>
@@ -56,7 +54,8 @@
             <%= @current_restaurant.cached_votes_down%>
             <% end %>
         </div>
-    </div>
+    </table>
+
     <div id="menu-container">
       <div id="rest_menu">
           <%if @menu_id.present?%>
