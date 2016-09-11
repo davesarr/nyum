@@ -67,7 +67,7 @@ class RestaurantsController < ApplicationController
   def downvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])
     @restaurant.downvote_by current_user
-    redirect_to request.referer + '#'+@restaurant.yelp_id 
+    redirect_to request.referer + '#'+@restaurant.yelp_id
   end
 
 

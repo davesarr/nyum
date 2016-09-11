@@ -1,5 +1,5 @@
 nav{
-  background-color: rgba(232,232,222,0.5);
+  background-color: rgba(232,232,232,0.5);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
@@ -40,44 +40,47 @@ font-family: $font-family-sans-serif;
 }
 
 #rest_show{
-    width: 980px;
-    display: flex;
+    background-color: rgba(232,232,232,0.5);
 
     .rest_info_div{
-      margin: 0 auto;
         width: 60vw;
         text-align: center;
-        margin-right: 15px;
+
 
         .rest_image{
-          margin: 0 auto;
-            height: 150;
-            width: 150;
-            text-align: center;
+            padding-top: 5px;
+            height: 180px;
+            width: auto;
+
         }
     }
 
     #rest_likes{
-      width: 15vw;
+      width: 20vw;
+      padding-bottom: 5vw;
     }
 
-     #rest_map {
+     #rest_maps{
        width: 15vw;
-          text-align: center;
     }
 }
 
-
-
-#menu-container{
-  display: flex;
-  margin: 0 auto;
-  text-align: center;
-  width: 980px;
-  #rest_menu{
-      margin: 0 auto;
-      text-align: center;
-  }
+// #menu-container{
+//   display: flex;
+//   margin: 0 auto;
+//   text-align: center;
+//   width: 980px;
+//   #rest_menu{
+//       margin: 0 auto;
+//       text-align: center;
+//   }
+// }
+#-locu-widget-widget-instance{
+    max-width: 1170px;
+    margin: 0 auto;
+}
+td.locu-widget-reset{
+    text-align: center;
 }
 
 table {
@@ -89,6 +92,7 @@ table {
 }
 td{
   min-width: 20vw;
+  text-align: center;
 }
 
 // index

@@ -10,51 +10,54 @@
 
 <h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
     <table id="rest_show" class="container">
-        <div id="rest_maps">
-            <%latitude=@current_restaurant.latitude%>
-            <%longitude=@current_restaurant.longitude%>
-          <div>
-            <div id="map" style='width: 300px; height: 200px;'></div>
-          </div>
-          <script type="text/javascript">
-            handler = Gmaps.build('Google');
-            handler.buildMap({ provider: {minZoom: 10}, internal: {id: 'map'}}, function(){
-            markers = handler.addMarkers([
-              {
-                lat: <%=latitude%>,
-                lng: <%=longitude%>,
-                picture: {
-                  url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-                  width:  36,
-                  height: 36
-                }
-              }
-            ]);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-            });
-          </script>
-          <h4><%= @current_restaurant.address %></h4>
-          <h4><%= @current_restaurant.phone %></h4>
-        </div>
+        <tr>
+            <td id="rest_maps">
+                <%latitude=@current_restaurant.latitude%>
+                <%longitude=@current_restaurant.longitude%>
+              <div>
+                <div id="map" style='width: 300px; height: 200px;'></div>
+              </div>
+              <script type="text/javascript">
+                handler = Gmaps.build('Google');
+                handler.buildMap({ provider: {minZoom: 10}, internal: {id: 'map'}}, function(){
+                markers = handler.addMarkers([
+                  {
+                    lat: <%=latitude%>,
+                    lng: <%=longitude%>,
+                    picture: {
+                      url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+                      width:  36,
+                      height: 36
+                    }
+                  }
+                ]);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                });
+              </script>
+              <h4><%= @current_restaurant.address %></h4>
+              <h4><%= @current_restaurant.phone %></h4>
+          </td>
 
-        <div class="rest_info_div">
-            <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
-            <h4><%= @current_restaurant.rating%>%</h4>
-            <h4><%= @current_restaurant.category%></h4>
-        </div>
+            <td class="rest_info_div">
+                <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
+                <h4><%= @current_restaurant.rating%>%</h4>
+                <h4><%= @current_restaurant.category%></h4>
+            </td>
 
-        <div id="rest_likes">
-            <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            <h4>Upvote</h4>
-            <%= @current_restaurant.cached_votes_up%>
-            <% end %> <br><br>
-            <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            <h4>Downvote</h4>
-            <%= @current_restaurant.cached_votes_down%>
-            <% end %>
-        </div>
+            <td id="rest_likes">
+                <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                <h4>Upvote</h4>
+                <%= @current_restaurant.cached_votes_up%>
+                <% end %>
+                <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                <h4>Downvote</h4>
+                <%= @current_restaurant.cached_votes_down%>
+                <% end %>
+            </td>
+        </tr>
     </table>
+    <hr>
 
     <div id="menu-container">
       <div id="rest_menu">
