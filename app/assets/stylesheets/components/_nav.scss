@@ -1,11 +1,12 @@
-
-
 nav{
   background-color: rgba(232,232,222,0.5);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
   padding: 0 2vw;
+}
+.dropdown-toggle{
+    height: 34px;
 }
 body{
     background-color: #feb8bd;
