@@ -12,11 +12,11 @@
 
         <%= link_to like_restaurant_path(place.id), method: :put do %>
           Upvote
-          <%= @restaurant.get_upvotes.size %>
+          <%= @restaurant.cached_votes_up %>
         <% end %>
         <%= link_to dislike_restaurant_path(place.id), method: :put do %>
           Downvote
-          <%= @restaurant.get_downvotes.size%>
+          <%= @restaurant.cached_votes_down %>
         <% end %>
     </div>
     <hr />

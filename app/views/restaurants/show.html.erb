@@ -49,11 +49,11 @@
         <div id="rest_likes">
             <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
             <h4>Upvote</h4>
-            <%= @current_restaurant.get_upvotes.size %>
+            <%= @current_restaurant.cached_votes_up%>
             <% end %> <br><br>
             <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
             <h4>Downvote</h4>
-            <%= @current_restaurant.get_downvotes.size%>
+            <%= @current_restaurant.cached_votes_down%>
             <% end %>
         </div>
     </div>

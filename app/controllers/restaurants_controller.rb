@@ -47,15 +47,15 @@ class RestaurantsController < ApplicationController
 
     #zomato api
     else
-    menu_url = fetch_menu_url_from_api( @current_restaurant )
-    unless menu_url == 'no match'
-      doc = Nokogiri::HTML( open( menu_url ) )
-      unless doc == nil
-        @menu = doc.css( 'div.tmi-name' )
+      menu_url = fetch_menu_url_from_api( @current_restaurant )
+      unless menu_url == 'no match'
+        doc = Nokogiri::HTML( open( menu_url ) )
+        unless doc == nil
+          @menu = doc.css( 'div.tmi-name' )
+        end
       end
     end
   end
-end
 
 
   def upvote
