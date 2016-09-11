@@ -1,47 +1,78 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+    <script src="//maps.google.com/maps/api/js?key=AIzaSyBZMoF3v_KL_FRtebw0rltJOYs4UoyzGwM"></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+
   <body>
+
     <h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
     <div id="rest_show" class="container">
         <div class="rest_info_div">
             <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
-            <p><%= @current_restaurant.address %></p>
-            <p><%= @current_restaurant.phone %></p>
-            <p><%= @current_restaurant.rating%>%</p>
-            <p><%= @current_restaurant.category%></p>
+            <h4><%= @current_restaurant.address %></h4>
+            <h4><%= @current_restaurant.phone %></h4>
+            <h4><%= @current_restaurant.rating%>%</h4>
+            <h4><%= @current_restaurant.category%></h4>
         </div>
 
-        <div id="rest_menu">
-            <%if @menu_id.present?%>
-              <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
-            <%elsif @menu.present?%>
-                <%for i in 0..@menu.length-1%>
-                    <p><%=@menu[i].text%></p>
-                <%end%>
-            <%end%>
+        <div id="rest_maps">
+            <%latitude=@current_restaurant.latitude%>
+            <%longitude=@current_restaurant.longitude%>
+          <div>
+            <div id="map" style='width: 300px; height: 200px;'></div>
+          </div>
+          <script type="text/javascript">
+            handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {minZoom: 10}, internal: {id: 'map'}}, function(){
+            markers = handler.addMarkers([
+              {
+                lat: <%=latitude%>,
+                lng: <%=longitude%>,
+                picture: {
+                  url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+                  width:  36,
+                  height: 36
+                }
+              }
+            ]);
+
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            });
+          </script>
         </div>
+
 
         <div id="rest_likes">
             <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            Upvote
+            <h4>Upvote</h4>
             <%= @current_restaurant.get_upvotes.size %>
-            <% end %> <br>
+            <% end %> <br><br>
             <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-            Downvote
+            <h4>Downvote</h4>
             <%= @current_restaurant.get_downvotes.size%>
             <% end %>
         </div>
     </div>
+    <div id="menu-container">
+      <div id="rest_menu">
+          <%if @menu_id.present?%>
+            <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
+          <%elsif @menu.present?%>
+          </br>
+          <h2>Menu</h2>
+          </br>
+          <table>
+            <%for i in 0..@menu.length-1%>
+            <tr>
+             <td> <%=@menu[i].text%></td>
+            </tr>
+            <%end%>
+          </table>
+          <%end%>
+      </div>
+    </div>
 
-  </body>
-</html>
 
 
-<script type="text/javascript" id="-locu-widget" src=<%=src%>></script>
-
+    <script type="text/javascript" id="-locu-widget" src=<%=src%>></script>
 
 <!-- {"id":190,"category":"Pizza,pizza,Italian,italian,Tapas/SmallPlates,tapasmallplates","rating":"85","name":"B Side Pizza \u0026 Wine Bar","address":"370 W 51st St, Theater District, New York, NY 10019","image_url":"https://s3-media1.fl.yelpcdn.com/bphoto/m_5goJPoabzTHCyQ2qAVGQ/ms.jpg","phone":"6466797225","menu_link":null,"created_at":"2016-09-09T15:04:52.060Z","updated_at":"2016-09-09T15:04:52.060Z","yelp_id":"b-side-pizza-and-wine-bar-new-york"} -->

@@ -22,26 +22,66 @@ nav{
 }
 
 #rest_show{
-    display: flex;
-    align-content: stretch;
+    display: inline-flex;
+    align-content:stretch;
+    margin: 0 auto;
+
 
     .rest_info_div{
+      margin: 0 auto;
         max-width: 280;
         text-align: center;
 
+
         .rest_image{
+          margin: 0 auto;
             height: 150;
             width: 150;
+
         }
     }
 
     #rest_menu{
-        flex-grow: 2;
-        text-align: center;
+        // width: 20%;
+        // text-align: center;
+        margin: 0 auto;
     }
 
     #rest_likes{
-        flex-grow: 1;
+        // width: 20%;
+        margin: 0 auto;
         text-align: center;
     }
+    #rest_map{
+      // width: 20%;
+      margin: 0 auto;
+      // text-align: center;
+    }
+}
+
+#menu-container{
+  display: flex;
+  margin: 0 auto;
+  align-content: stretch;
+  width: 1000px;
+  #rest_menu{
+      margin: 0 auto;
+  }
+}
+
+
+//
+// index
+#rest_index{
+  margin: 0 auto;
+  width:80vw;
+}
+
+#user{
+  margin: 0 auto;
+  width:80vw;
+}
+#identity{
+  margin: 0 auto;
+  width:80vw;
 }

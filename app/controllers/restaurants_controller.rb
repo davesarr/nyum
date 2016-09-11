@@ -33,6 +33,8 @@ class RestaurantsController < ApplicationController
   def show
 
     @current_restaurant = Restaurant.find_by_yelp_id(params[:id])
+    @latitude= @current_restaurant.latitude
+    @longitude= @current_restaurant.longitude
     #locu api
     response = HTTParty.get(
       "https://api.locu.com/v1_0/venue/search/?name=" +
@@ -54,6 +56,7 @@ class RestaurantsController < ApplicationController
     end
   end
 end
+
 
   def upvote
     @restaurant = Restaurant.find_by_yelp_id(params[:id])

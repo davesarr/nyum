@@ -1,20 +1,25 @@
-<%if @identity.present?%>
-  Name: <%=@identity.name%></br>
-  Email: <%=@identity.email%></br>
-  <%=image_tag src=@identity.image%></br>
-  Signed in through <%=@identity.provider%>
-  </br>
-  Your restaurants:
-  <%for i in 0..@likes.length-1%>
-      <p><%=@likes[i].name%></p>
+<div id="identity">
+  <%if @identity.present?%>
+    <h3>Name: <%=@identity.name%></h3></br>
+    <h3>Email: <%=@identity.email%></h3></br>
+    <%=image_tag src=@identity.image%></br>
+    Signed in through <%=@identity.provider%>
+    </br>
+    Your restaurants:
+    <%for i in 0..@likes.length-1%>
+        <p><%=@likes[i].name%></p>
+    <%end%>
   <%end%>
-<%end%>
+</div>
 
-<%if @user.present?%>
-  <h3>Email: <%=@user.email%></h3>
-  </br>
-  <h3>Your restaurants:</h3>
-  <%for i in 0..@likes.length-1%>
-      <p><%=@likes[i].name%></p>
+
+<div id="user">
+  <%if @user.present?%>
+    <h3>Email: <%=@user.email%></h3>
+    </br>
+    <h3>Your restaurants:</h3>
+    <%for i in 0..@likes.length-1%>
+        <h3><%= link_to @likes[i].name, restaurant_path(@likes[i].yelp_id) %></h3>
+    <%end%>
   <%end%>
-<%end%>
+</div>
