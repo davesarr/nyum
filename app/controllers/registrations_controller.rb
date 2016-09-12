@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+    layout 'application'
   def update_resource(resource, params)
     if resource.encrypted_password.blank? # || params[:password].blank?
       resource.email = params[:email] if params[:email]

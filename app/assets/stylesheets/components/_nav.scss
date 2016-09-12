@@ -10,12 +10,15 @@ nav {
 }
 
 .container-sign-in{
-  margin-left:40vw;
+  margin: 0 auto;
   background-color:rgba(204,204,204,0.8);
-  width:250px;
+  width:550px;
   padding:12px;
   font-size: 1.3em;
   font-weight: bold;
+}
+.container-sign-in #submit-button{
+  float: right;
 }
 
 #background-img-body {

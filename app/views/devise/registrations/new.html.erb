@@ -1,27 +1,27 @@
 <body id="background-img-body">
 <div class="container-sign-in">
-  <div class="row">
-    <div class="profile center">
-      <%= panel title: 'Signup', context: :primary do %>
+  <div>
+    <div>
+      <h3 style="text-align:center; font-weight:bold"> Sign up</h3>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f| %>
-          <div class="panel-body">
+          <div>
             <%= f.error_notification %>
-            <div class="form-inputs">
+            <div>
               <%= f.input :email, required: true, autofocus: true %>
               <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
               <%= f.input :password_confirmation, required: true %>
             </div>
           </div>
-          <div class="panel-footer">
-            <div class="buttons">
+          <div>
+            <div id="submit-button">
               <%= f.button :submit, "Sign up", class: "btn-primary" %>
             </div>
-            <div class="links">
+            <div>
               <%= render "devise/shared/links" %>
             </div>
           </div>
         <% end %>
-      <% end %>
+
     </div>
   </div>
 </div>
