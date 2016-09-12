@@ -19,7 +19,7 @@
               </div>
               <script type="text/javascript">
                 handler = Gmaps.build('Google');
-                handler.buildMap({ provider: {minZoom: 10}, internal: {id: 'map'}}, function(){
+                handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
                 markers = handler.addMarkers([
                   {
                     lat: <%=latitude%>,
@@ -32,7 +32,9 @@
                   }
                 ]);
                 handler.bounds.extendWith(markers);
+
                 handler.fitMapToBounds();
+                handler.getMap().setZoom(15);
                 });
               </script>
               <h4><%= @current_restaurant.address %></h4>
