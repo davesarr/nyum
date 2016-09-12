@@ -1,10 +1,12 @@
 <body id="background-img-body">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<%#= javascript_include_tag "home", "data-turbolinks-track" => true  %>
+<script type="text/javascript" src"/assets/home.js" ></script>
 <div class="search-container">
 <%= form_tag(restaurants_path, :method => "get", :id => 'welcome-search-bar')  do %>
 <%= form_tag(restaurants_path, :method => "get", :id => 'bttn-welcome-search') do %>
 <%= button_tag( :class => "button_green") do %>
-<i class="fa fa-location-arrow" style="font-size:20px;"></i>
+<i id="geo-arrow" class="fa fa-location-arrow" style="font-size:20px;"></i>
 <%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
 <%= hidden_field_tag :term, params[:term]="Restaurants" %>
 <% end %>
