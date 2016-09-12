@@ -38,6 +38,7 @@
                 });
               </script>
               <h4><%= @current_restaurant.address %></h4>
+              <%@current_restaurant.phone=@current_restaurant.phone||""%>
               <%phone = @current_restaurant.phone.gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3')%>
               <%=phone %>
           </td>
