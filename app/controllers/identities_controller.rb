@@ -9,9 +9,9 @@ class IdentitiesController < ApplicationController
 
     def show
       unless ActiveRecord::RecordNotFound
-      @identity = Identity.find(params[:id])
+        @identity = Identity.find(params[:id])
       else
-      @user= User.find(params[:id])
+        @user= User.find(params[:id])
       end
       @likes=[]
       votes= Vote.where(voter_id: params[:id])
@@ -24,17 +24,17 @@ class IdentitiesController < ApplicationController
     def update
         identity = params['identity']
         Identity.update( id: params[:id],
-                name: identity[:name],
-                nickname: identity[:nickname],
-                phone: identity[:phone]
+          name: identity[:name],
+          nickname: identity[:nickname],
+          phone: identity[:phone]
         )
         redirect_to (:back)
     end
 
 
-private
+  private
     def updated_params
-        params.require(:identity).permit(:name, :nickname, :phone)
+      params.require(:identity).permit(:name, :nickname, :phone)
     end
 
 end
