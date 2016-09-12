@@ -42,6 +42,9 @@
             <td class="rest_info_div">
                 <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
                 <h4><%= @current_restaurant.rating%>%</h4>
+                <%if @current_restaurant.rating.to_i >= 90 %>
+                <%= image_tag ('/assets/happy.png')%>
+                <%end%>
                 <h4><%= @current_restaurant.category%></h4>
             </td>
 

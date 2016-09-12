@@ -20,6 +20,7 @@
     <h3>Your restaurants:</h3>
     <%for i in 0..@likes.length-1%>
         <h3><%= link_to @likes[i].name, restaurant_path(@likes[i].yelp_id) %></h3>
+        <%= image_tag @likes[i].image_url%>
     <%end%>
   <%end%>
 </div>

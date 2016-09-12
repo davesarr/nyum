@@ -2,35 +2,41 @@
 <div class="container">
     <% @responses.businesses.each do |place|%>
     <% @restaurant = Restaurant.find_by_yelp_id(place.id) %>
-      <table id="rest_index_table">
+    <table id="rest_index_table">
         <tr>
-          <td>
-            <div id="<%=place.id%>" class="rest_index">
-              <h3 style="center"><%= link_to place.name, restaurant_path(place.id) %></h3>
-              <%= image_tag place.image_url, :class => "img_index"%>
-          </td>
-          <td>
-              <h4><%= @restaurant.category%></h4>
-          </td>
-          <td>
-            <h5 style="font-size: 30px"><strong><%= ((place.rating-1)*(99/4)+1).to_i%>%</strong></h5>
-          </td>
-          <td>
-        <%= link_to like_restaurant_path(place.id), method: :put do %>
-          Upvote
-          <%= @restaurant.cached_votes_up %>
-        <% end %>
-        <%= link_to dislike_restaurant_path(place.id), method: :put do %>
-          Downvote
-          <%= @restaurant.cached_votes_down %>
-        <% end %>
-          </div>
-          </td>
+            <td>
+                <div id="<%=place.id%>" class="rest_index">
+                    <h3 style="center"><%= link_to place.name, restaurant_path(place.id) %></h3>
+                    <%= image_tag place.image_url, :class => "img_index"%>
+                </td>
+                <td>
+                    <h4><%= @restaurant.category%></h4>
+                </td>
+                <td>
+                    <h5 style="font-size: 30px">
+                        <strong><%= ((place.rating-1)*(99/4)+1).to_i%>%</strong>
+                        <%if ((place.rating-1)*(99/4)+1).to_i >= 90 %>
+                        <%= image_tag ('/assets/happy.png')%>
+                        <%end%>
+                    </h5>
+                </td>
+                <td>
+                    <%= link_to like_restaurant_path(place.id), method: :put do %>
+                    Upvote
+                    <%= @restaurant.cached_votes_up %>
+                    <% end %>
+                    <%= link_to dislike_restaurant_path(place.id), method: :put do %>
+                    Downvote
+                    <%= @restaurant.cached_votes_down %>
+                    <% end %>
+                </div>
+            </td>
         </tr>
-      </table>
+    </table>
     <% end %>
 </div>
 
-    <% else %>
-        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% else %>
+<p>There are no posts containing the term(s)
+    <%= params[:search] %>.</p>
 <% end %>

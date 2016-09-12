@@ -1,102 +1,91 @@
-nav{
+nav {
   background-color: rgba(232,232,232,0.5);
   font-size: 1.5em;
   font-family: $font-family-logo;
   height: 10vh;
   padding: 0 2vw;
 }
-.dropdown-toggle{
-    height: 34px;
+.dropdown-toggle {
+  height: 34px;
 }
 #home_index {
   background: url('/assets/background_img.jpeg');
   background-size: cover;
 }
-
-a{
+a {
   color: #851226;
 }
-
-a:hover{
+a:hover {
   text-decoration: none;
 }
-div,p{
-font-family: $font-family-sans-serif;
+div,
+p {
+  font-family: $font-family-sans-serif;
 }
-#logo{
+#logo {
   font-size: 2.5em;
   float: left;
   margin-top: 0;
+  color: rgb(255, 173, 51);
 }
-
-#account-btns{
+#account-btns {
   float: right;
   margin-top: 2vh;
   font-family: helvetica;
 }
-#rest_name_header{
-    font-family: $font-family-logo;
-    font-size: 48px;
-    text-align: center;
+#rest_name_header {
+  font-family: $font-family-logo;
+  font-size: 48px;
+  text-align: center;
 }
-
 // restaurant show page
-.img_index{
+.img_index {
   border: 2px solid grey;
 }
-
-#rest_show{
-    background-color: rgba(232,232,232,0.5);
-
-    .rest_info_div{
-        width: 60vw;
-        text-align: center;
-
-        .rest_image{
-            padding-top: 5px;
-            height: 180px;
-            width: auto;
-
-        }
-    }
-
-    #rest_likes{
-      width: 20vw;
-      padding-bottom: 5vw;
-    }
-
-     #rest_maps{
-       width: 15vw;
-       text-align: center;
-    }
-}
-#-locu-widget-widget-instance{
-    max-width: 1170px;
-    margin: 0 auto;
-}
-td.locu-widget-reset{
+#rest_show {
+  background-color: rgba(232,232,232,0.5);
+  .rest_info_div {
+    width: 60vw;
     text-align: center;
+    .rest_image {
+      padding-top: 5px;
+      height: 180px;
+      width: auto;
+    }
+  }
+  #rest_likes {
+    width: 20vw;
+    padding-bottom: 5vw;
+  }
+  #rest_maps {
+    width: 15vw;
+    text-align: center;
+  }
 }
-
+#-locu-widget-widget-instance {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+td.locu-widget-reset {
+  text-align: center;
+}
 #rest_index_table {
-    border-collapse: separate;
-    border-spacing: 20px 10px;
-    width: 70vw;
-    margin: 0 40px;
+  border-collapse: separate;
+  border-spacing: 20px 10px;
+  width: 70vw;
+  margin: 0 40px;
 }
-
-.rest_index{
+.rest_index {
   width: 20vw;
   float: left;
 }
-td{
+td {
   min-width: 15vw;
   text-align: center;
 }
-
-
 // index
-#user, #identity {
+#identity,
+#user {
   margin: 0 auto;
-  width:80vw;
+  width: 80vw;
 }
