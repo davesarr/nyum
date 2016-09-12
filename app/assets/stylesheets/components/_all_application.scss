@@ -1,0 +1,68 @@
+nav {
+  background-color: rgba(232,232,232,0.5);
+  font-size: 1.5em;
+  font-family: $font-family-logo;
+  height: 10vh;
+  padding: 0 2vw;
+}
+
+.dropdown-toggle {
+  height: 34px;
+}
+
+#background-img-body {
+  background:
+  url('https://dl.dropboxusercontent.com/u/19638963/background_img.jpeg');
+  background-size: cover;
+}
+
+a {
+  color: #851226;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+div,p {
+  font-family: $font-family-sans-serif;
+}
+
+#logo {
+  font-size: 2.5em;
+  float: left;
+  margin-top: 0;
+  color: rgb(255, 173, 51);
+}
+
+#account-btns {
+  float: right;
+  margin-top: 2vh;
+  font-family: helvetica;
+}
+
+#-locu-widget-widget-instance {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+td.locu-widget-reset {
+  text-align: center;
+}
+
+td {
+  min-width: 15vw;
+  text-align: center;
+  color: #851226;
+}
+
+#identity,#user {
+  margin: 0 auto;
+  width: 80vw;
+}
+
+.notice{
+  color:white;
+  font-size: 1.3em;
+}

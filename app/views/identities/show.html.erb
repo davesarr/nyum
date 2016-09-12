@@ -7,11 +7,10 @@
     </br>
     Your restaurants:
     <%for i in 0..@likes.length-1%>
-        <p><%=@likes[i].name%></p>
+      <p><%=@likes[i].name%></p>
     <%end%>
   <%end%>
 </div>
-
 
 <div id="user">
   <%if @user.present?%>
@@ -19,8 +18,8 @@
     </br>
     <h3>Your restaurants:</h3>
     <%for i in 0..@likes.length-1%>
-        <h3><%= link_to @likes[i].name, restaurant_path(@likes[i].yelp_id) %></h3>
-        <%= image_tag @likes[i].image_url%>
+      <h3><%= link_to @likes[i].name, restaurant_path(@likes[i].yelp_id) %></h3>
+      <%= image_tag @likes[i].image_url%>
     <%end%>
   <%end%>
 </div>

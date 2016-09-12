@@ -1,9 +1,9 @@
 <%= form_for :identity, method: 'patch', url: {action:'update'} do |t| %>
-<%= label(:identity, :name) %>
-<%= t.text_field :name %>
-<%= label(:identity, :nickname) %>
-<%= t.text_field :nickname%>
-<%= label(:identity, :phone) %>
-<%= t.text_field :phone%>
-<%= t.submit "Update" %>
+  <%= label(:identity, :name) %>
+  <%= t.text_field :name %>
+  <%= label(:identity, :nickname) %>
+  <%= t.text_field :nickname%>
+  <%= label(:identity, :phone) %>
+  <%= t.text_field :phone%>
+  <%= t.submit "Update" %>
 <% end %>

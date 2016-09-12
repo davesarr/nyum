@@ -1,0 +1,27 @@
+#rest_name_header {
+  font-family: $font-family-logo;
+  font-size: 48px;
+  color: #851226;
+  text-align: center;
+}
+
+#rest_show {
+  background-color: rgba(232,232,232,0.5);
+  .rest_info_div {
+    width: 60vw;
+    text-align: center;
+    .rest_image {
+      padding-top: 5px;
+      height: 180px;
+      width: auto;
+    }
+  }
+  #rest_likes {
+    width: 20vw;
+    padding-bottom: 5vw;
+  }
+  #rest_maps {
+    width: 15vw;
+    text-align: center;
+  }
+}

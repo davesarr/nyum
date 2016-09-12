@@ -1,34 +1,33 @@
 <html>
 <head>
-<title>Nyum</title>
-<%= csrf_meta_tags %>
-
- <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
- </head>
- <header>
-  <nav>
-  <span id="logo"><%= link_to "Nyum!", root_path%></span>
-  <span id="account-btns"><% if user_signed_in? %>
-      <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-              Hello, <%= current_user.email || "User" %> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                <li><% current_user.email= current_user.email || "My Profile" %> <%= link_to 'Profile', identity_path(current_user.id), :class => 'nav_email'%></li>
-                <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => 'nav_sign'%></li>
-            </ul>
-          </div>
-  <% else %>
-  <%= link_to "Sign up", new_user_registration_path %>
-  <%= link_to "Sign in", new_user_session_path %></span>
-  <% end %>
-  </nav>
-  </header>
+  <title>Nyum</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   </head>
+   <header>
+    <nav>
+      <span id="logo"><%= link_to "Nyum!", root_path%></span>
+      <span id="account-btns"><% if user_signed_in? %>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Hello, <%= current_user.email || "User" %> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><% current_user.email= current_user.email || "My Profile" %> <%= link_to 'Profile', identity_path(current_user.id), :class => 'nav_email'%></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => 'nav_sign'%></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %>
+        <%= link_to "Sign in", new_user_session_path %></span>
+      <% end %>
+      </nav>
+    </header>
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
-  </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+    </div>
   </body>
   </html>

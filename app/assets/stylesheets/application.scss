@@ -22,15 +22,13 @@
 // @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-Uncomment if you want to use the default bootstrap theme
+// Uncomment if you want to use the default bootstrap theme
 
 
 
 // --------------Global definitions--------------------
 // For example (add your own!!):
-a{
-  text-decoration: none;
-}
+
 
 // --------------Shared styles-------------------------
 // Common base CSS modifications. For example:
@@ -40,8 +38,12 @@ a{
 // --------------Components----------------------------
 // Create your own and modify/extend Bootstrap's. For example:
 @import 'components/profile_panels';
-@import 'components/nav';
 @import 'components/forms';
+@import 'components/all_application';
+@import 'components/all_signup';
+@import 'components/home_index';
+@import 'components/rest_index';
+@import 'components/rest_show';
 
 
 // --------------Sections------------------------------

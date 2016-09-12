@@ -1,90 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="//maps.google.com/maps/api/js?key=AIzaSyBZMoF3v_KL_FRtebw0rltJOYs4UoyzGwM"></script>
-     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-
-<h1 id='rest_name_header'> <%= @current_restaurant.name%></h1> <br>
-    <table id="rest_show" class="container">
-        <tr>
-            <td id="rest_maps">
-                <%latitude=@current_restaurant.latitude%>
-                <%longitude=@current_restaurant.longitude%>
-              <div>
-                <div id="map" style='width: 300px; height: 200px;'></div>
-              </div>
-              <script type="text/javascript">
-                handler = Gmaps.build('Google');
-                handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-                markers = handler.addMarkers([
-                  {
-                    lat: <%=latitude%>,
-                    lng: <%=longitude%>,
-                    picture: {
-                      url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-                      width:  36,
-                      height: 36
-                    }
-                  }
-                ]);
-                handler.bounds.extendWith(markers);
-
-                handler.fitMapToBounds();
-                handler.getMap().setZoom(15);
-                });
-              </script>
-              <h4><%= @current_restaurant.address %></h4>
-              <%@current_restaurant.phone=@current_restaurant.phone||""%>
-              <%phone = @current_restaurant.phone.gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3')%>
-              <%=phone %>
-          </td>
-
-            <td class="rest_info_div">
-                <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
-                <h4><%= @current_restaurant.rating%>%</h4>
-                <%if @current_restaurant.rating.to_i >= 87 %>
-                <%= image_tag ('https://dl.dropboxusercontent.com/u/19638963/happy.png')%>
-                <%end%>
-                <h4><%= @current_restaurant.category%></h4>
-            </td>
-
-            <td id="rest_likes">
-                <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-                <h4>Upvote</h4>
-                <%= @current_restaurant.cached_votes_up%>
-                <% end %>
-                <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
-                <h4>Downvote</h4>
-                <%= @current_restaurant.cached_votes_down%>
-                <% end %>
-            </td>
-        </tr>
-    </table>
-    <hr>
-
-    <div id="menu-container">
-      <div id="rest_menu">
-          <%if @menu_id.present?%>
-            <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
-          <%elsif @menu.present?%>
-          </br>
-          <h2 style="text-align:center">Menu</h2>
-          </br>
-          <table>
-            <%for i in 0..@menu.length-1%>
+    <head>
+        <script src="//maps.google.com/maps/api/js?key=AIzaSyBZMoF3v_KL_FRtebw0rltJOYs4UoyzGwM"></script>
+        <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1 id='rest_name_header'>
+            <%= @current_restaurant.name%></h1>
+        <br>
+        <table id="rest_show" class="container">
             <tr>
-             <td> <%=@menu[i].text%></td>
+                <td id="rest_maps">
+                    <%latitude=@current_restaurant.latitude%>
+                    <%longitude=@current_restaurant.longitude%>
+                    <div>
+                        <div id="map" style='width: 300px; height: 200px;'></div>
+                    </div>
+                    <script type="text/javascript">
+                        handler = Gmaps.build('Google');
+                        handler.buildMap({
+                            provider: {},
+                            internal: {
+                                id: 'map'
+                            }
+                        }, function () {
+                            markers = handler.addMarkers([
+                                {
+                                    lat: <%=latitude%>,
+                                    lng: <%=longitude%>,
+                                    picture: {
+                                        url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+                                        width: 36,
+                                        height: 36
+                                    }
+                                }
+                            ]);
+                            handler.bounds.extendWith(markers);
+                            handler.fitMapToBounds();
+                            handler.getMap().setZoom(15);
+                        });
+                    </script>
+                    <h4><%= @current_restaurant.address %></h4>
+                    <%@current_restaurant.phone=@current_restaurant.phone||""%>
+                    <%phone = @current_restaurant.phone.gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3')%>
+                    <%=phone %>
+                </td>
+                <td class="rest_info_div">
+                    <%= image_tag(@current_restaurant.image_url, class: "rest_image") %>
+                    <br>
+                    <br>
+                    <h4><%= @current_restaurant.rating%>%</h4>
+                    <%if @current_restaurant.rating.to_i >= 87 %>
+                    <%= image_tag ('https://dl.dropboxusercontent.com/u/19638963/happy.png')%>
+                    <%end%>
+                    <h4><%= @current_restaurant.category%></h4>
+                </td>
+                <td id="rest_likes">
+                    <%= link_to like_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                    <h4>Upvote</h4>
+                    <%= @current_restaurant.cached_votes_up%>
+                    <% end %>
+                    <%= link_to dislike_restaurant_path(@current_restaurant.yelp_id), method: :put do %>
+                    <h4>Downvote</h4>
+                    <%= @current_restaurant.cached_votes_down%>
+                    <% end %>
+                </td>
             </tr>
-            <%end%>
-          </table>
-          <%end%>
-      </div>
-    </div>
-  </body>
-
+        </table>
+        <hr>
+        <div id="menu-container">
+          <div id="rest_menu">
+              <%if @menu_id.present?%>
+                <%src="https://widget.locu.com/menuwidget/locu.widget.developer.v2.0.js?venue-id="+@menu_id+"&widget-key="+ENV["LOCU_WIDGET_KEY"]+"&medium=web"%>
+              <%elsif @menu.present?%>
+                </br>
+                <h2 style="text-align:center">Menu</h2>
+                </br>
+              <table>
+                <%for i in 0..@menu.length-1%>
+                <tr>
+                  <td>
+                    <%=@menu[i].text%>
+                  </td>
+                </tr>
+                <%end%>
+              </table>
+                <%end%>
+          </div>
+        </div>
+    </body>
 </html>
- <script type="text/javascript" id="-locu-widget" src=<%=src%>></script>
+<script type="text/javascript" id="-locu-widget" src=<%=src%>></script>
