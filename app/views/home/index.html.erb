@@ -7,8 +7,8 @@
 <%= form_tag(restaurants_path, :method => "get", :id => 'bttn-welcome-search') do %>
 <%= button_tag( :class => "button_green") do %>
 <i id="geo-arrow" class="fa fa-location-arrow" style="font-size:20px;"></i>
-<%= hidden_field_tag :search, params[:search]=request.location.address.empty?? "New York": request.location.address%>
-<%= hidden_field_tag :term, params[:term]="Restaurants" %>
+<%= hidden_field_tag :search, request.safe_location.address||="New York", placeholder: "Search location"%>
+<%= hidden_field_tag :term, "Restaurants", placeholder: "Search by cuisine" %>
 <% end %>
 <%= text_field_tag :search, params[:search], placeholder: "Search location"%>
 <%= text_field_tag :term, params[:term], placeholder: "Search by cuisine" %>
