@@ -7,7 +7,9 @@
             <td>
                 <div id="<%=place.id%>" class="rest_index">
                     <h3 style="center"><%= link_to place.name, restaurant_path(place.id) %></h3>
-                    <%= image_tag place.image_url, :class => "img_index"%>
+                    <%= link_to href: restaurant_path(place.id) do %>
+                      <%= image_tag place.image_url, :class => "img_index"%>
+                    <% end %>
                 </td>
                 <td>
                     <h4><%= @restaurant.category%></h4>
@@ -16,7 +18,7 @@
                     <h5 style="font-size: 30px">
                         <strong><%= ((place.rating-1)*(99/4)+1).to_i%>%</strong>
                         <%if ((place.rating-1)*(99/4)+1).to_i >= 90 %>
-                        <%= image_tag ('https://dl.dropboxusercontent.com/u/19638963/happy.png')%>
+                        <%= image_tag ('/assets/happy.png')%>
                         <%end%>
                     </h5>
                 </td>
