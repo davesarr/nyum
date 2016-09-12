@@ -8,7 +8,7 @@ class RestaurantsController < ApplicationController
         sort: sort,
         term: term
     }
-    if location.present? && !Yelp::Error::UnavailableForLocation
+    if location.present? #&& !Yelp::Error::UnavailableForLocation
       @responses = Yelp.client.search(location, params)
       @responses.businesses.each do |response|
         if Restaurant.find_by_yelp_id(response.id)==nil
