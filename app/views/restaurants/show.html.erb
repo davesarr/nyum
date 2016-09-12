@@ -36,13 +36,14 @@
                 });
               </script>
               <h4><%= @current_restaurant.address %></h4>
-              <h4><%= @current_restaurant.phone %></h4>
+              <%phone = @current_restaurant.phone.gsub(/(\d{3})(\d{3})(\d{4})/, '\1-\2-\3')%>
+              <%=phone %>
           </td>
 
             <td class="rest_info_div">
                 <%= image_tag(@current_restaurant.image_url, class: "rest_image") %> <br> <br>
                 <h4><%= @current_restaurant.rating%>%</h4>
-                <%if @current_restaurant.rating.to_i >= 90 %>
+                <%if @current_restaurant.rating.to_i >= 87 %>
                 <%= image_tag ('/assets/happy.png')%>
                 <%end%>
                 <h4><%= @current_restaurant.category%></h4>

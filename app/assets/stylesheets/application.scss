@@ -19,8 +19,8 @@
 
 
 // --------------Bootstrap-----------------------------
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+// @import 'bootstrap-sprockets';
+// @import 'bootstrap';
 
 // Uncomment if you want to use the default bootstrap theme
 
@@ -28,7 +28,9 @@
 
 // --------------Global definitions--------------------
 // For example (add your own!!):
-
+a{
+  text-decoration: none;
+}
 
 // --------------Shared styles-------------------------
 // Common base CSS modifications. For example:

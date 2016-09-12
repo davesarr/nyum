@@ -8,7 +8,17 @@ nav {
 .dropdown-toggle {
   height: 34px;
 }
-#home_index {
+
+.container-sign-in{
+  margin-left:40vw;
+  background-color:rgba(204,204,204,0.8);
+  width:250px;
+  padding:12px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+#background-img-body {
   background: url('/assets/background_img.jpeg');
   background-size: cover;
 }
